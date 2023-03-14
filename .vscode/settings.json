@@ -1,9 +1,10 @@
 {
-    "omnisharp.enableRoslynAnalyzers": true,
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    },
+    "omnisharp.enableMsBuildLoadProjectsOnDemand": true,
     "omnisharp.enableEditorConfigSupport": true,
-    "omnisharp.waitForDebugger": true,
-    "csharp.inlayHints.parameters.enabled": true,
-    "csharp.inlayHints.parameters.forOtherParameters": true,
-    "csharp.inlayHints.types.enabled": true,
-    "csharp.inlayHints.types.forImplicitObjectCreation": true
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.useEditorFormattingSettings": false,
+    "omnisharp.organizeImportsOnFormat": true
 }

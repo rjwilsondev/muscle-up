@@ -11,8 +11,5 @@ public class WorkoutController : Controller
     [Produces("application/json")]
     [SwaggerResponse(201, "Test", typeof(string))]
     [SwaggerResponse(400, "The data is invalid")]
-    public string GetWorkouts()
-    {
-        return "Hello Ryan!";
-    }
+    public string GetWorkouts() => "Hello Ryan!";
 }
