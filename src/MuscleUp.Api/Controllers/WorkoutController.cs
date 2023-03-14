@@ -1,5 +1,5 @@
+namespace MuscleUp.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
-
 using Swashbuckle.AspNetCore.Annotations;
 
 [Route("workout")]
