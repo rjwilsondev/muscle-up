@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen(options =>
         // TermsOfService = new Uri("https://example.com/terms"),
         Contact = new OpenApiContact
         {
-            Name = "Example Contact",
+            Name = "Contact",
             // Url = new Uri("https://example.com/contact")
         },
         License = new OpenApiLicense
@@ -42,7 +42,7 @@ if (app.Environment.IsDevelopment())
     _ = app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
+        //options.RoutePrefix = "/swagger";
     });
 }
 

@@ -7,11 +7,11 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/MuscleUp.csproj",
+                "${workspaceFolder}/src/MuscleUp.Api/MuscleUp.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher"    : "$msCompile"
         },
         {
             "label": "publish",
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/MuscleUp.csproj",
+                "${workspaceFolder}/src/MuscleUp.Api/MuscleUp.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/MuscleUp.csproj"
+                "${workspaceFolder}/src/MuscleUp.Api/MuscleUp.Api.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0FA6E5D3-C750-4F22-999F-41B25A813BC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuscleUp.Api", "src\MuscleUp.Api\MuscleUp.Api.csproj", "{BF101C51-A02D-4BC0-9F16-6922FD708F55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuscleUp.Data", "src\MuscleUp.Data\MuscleUp.Data.csproj", "{C9AFD49E-3E3A-4208-AF4E-2B8F96B3A785}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF101C51-A02D-4BC0-9F16-6922FD708F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF101C51-A02D-4BC0-9F16-6922FD708F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF101C51-A02D-4BC0-9F16-6922FD708F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF101C51-A02D-4BC0-9F16-6922FD708F55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9AFD49E-3E3A-4208-AF4E-2B8F96B3A785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9AFD49E-3E3A-4208-AF4E-2B8F96B3A785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9AFD49E-3E3A-4208-AF4E-2B8F96B3A785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9AFD49E-3E3A-4208-AF4E-2B8F96B3A785}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF101C51-A02D-4BC0-9F16-6922FD708F55} = {0FA6E5D3-C750-4F22-999F-41B25A813BC3}
+		{C9AFD49E-3E3A-4208-AF4E-2B8F96B3A785} = {0FA6E5D3-C750-4F22-999F-41B25A813BC3}
+	EndGlobalSection
+EndGlobal

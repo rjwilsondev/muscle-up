@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-namespace Workout.Data;
+
+namespace MuscleUp.Data;
 
 public class Workout
 {
