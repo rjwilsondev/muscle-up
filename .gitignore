@@ -478,3 +478,4 @@ $RECYCLE.BIN/
 
 .omnisharp.json
 /src/MuscleUp.Api/local.appsettings.json
+/src/MuscleUp.Api/appsettings.json
