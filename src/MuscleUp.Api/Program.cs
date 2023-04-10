@@ -1,7 +1,22 @@
-﻿using System.Reflection;
+using System.Data.SqlClient;
+using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using MuscleUp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//var conStrBuilder = new SqlConnectionStringBuilder(
+//       )
+//{
+//    Password = builder.Configuration["DbPassword"]
+//};
+
+var connection = builder.Configuration.GetConnectionString("WebApiDatabase");
+
+builder.Services.AddDbContext<WorkoutContext>(
+    options => options.UseNpgsql(connection)
+);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

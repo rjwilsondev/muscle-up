@@ -1,4 +1,8 @@
+using System.Data.SqlClient;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace MuscleUp.Data;
 
@@ -34,4 +38,19 @@ public class WorkoutContext : DbContext
     public DbSet<Workout> Workouts => this.Set<Workout>();
     public DbSet<Exercise> Exercises => this.Set<Exercise>();
     public DbSet<WorkoutExercise> WorkoutExercises => this.Set<WorkoutExercise>();
+}
+
+public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<WorkoutContext>
+{
+    public WorkoutContext CreateDbContext(string[] args)
+    {
+        var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile(@Directory.GetCurrentDirectory() + "/../MuscleUp.Api/local.appsettings.json")
+            .Build();
+        var builder = new DbContextOptionsBuilder<WorkoutContext>();
+        var connection = configuration.GetConnectionString("WebApiDatabase");
+
+        builder.UseNpgsql(connection);
+        return new WorkoutContext(builder.Options);
+    }
 }
