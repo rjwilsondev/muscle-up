@@ -1,7 +1,7 @@
-using System.Data.SqlClient;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using MuscleUp.Api.Services;
 using MuscleUp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,10 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 //    Password = builder.Configuration["DbPassword"]
 //};
 
-var connection = builder.Configuration.GetConnectionString("WebApiDatabase");
+var connection = builder.Configuration.GetConnectionString("WorkoutDatabase");
 
 builder.Services.AddDbContext<WorkoutContext>(
-    options => options.UseNpgsql(connection)
+    options => options.UseSqlServer(connection)
 );
 
 // Add services to the container.
@@ -47,6 +47,7 @@ builder.Services.AddSwaggerGen(options =>
 
 });
 
+builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 
 var app = builder.Build();
 
