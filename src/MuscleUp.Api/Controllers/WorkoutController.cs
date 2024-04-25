@@ -6,6 +6,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace MuscleUp.Api.Controllers;
 
+[Produces("application/json")]
 public class WorkoutController : Controller
 {
     private readonly IWorkoutService workoutService;
