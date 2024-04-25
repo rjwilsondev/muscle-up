@@ -8,6 +8,7 @@ function App() {
 
   return (
     <>
+    <h1 className='text-2xl font-bold ' >Hello World!! With Tailwind!</h1>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
