@@ -12,10 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 //    Password = builder.Configuration["DbPassword"]
 //};
 
-var connection = builder.Configuration.GetConnectionString("WebApiDatabase");
+var connection = builder.Configuration.GetConnectionString("WorkoutDatabase");
 
 builder.Services.AddDbContext<WorkoutContext>(
-    options => options.UseNpgsql(connection)
+    options => options.UseSqlServer(connection)
 );
 
 // Add services to the container.

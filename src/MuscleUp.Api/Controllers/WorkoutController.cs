@@ -1,10 +1,11 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using MuscleUp.Data;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace MuscleUp.Api.Controllers;
 
-[Route("workout")]
+[Route("workouts")]
 public class WorkoutController : Controller
 {
     private readonly WorkoutContext context;
@@ -13,15 +14,25 @@ public class WorkoutController : Controller
 
 
     ///<summary>This is a summary</summary>
-    [HttpGet("")]
+    [HttpGet()]
     [Produces("application/json")]
-    [SwaggerResponse(201, "Test", typeof(string))]
-    [SwaggerResponse(400, "The data is invalid")]
-    public string GetWorkouts()
+    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(string))]
+    [SwaggerResponse((int)HttpStatusCode.BadRequest, "The data is invalid")]
+    public async Task<IActionResult> GetWorkouts()
     {
-
         var workouts = this.context.Workouts.ToList();
+        return this.Ok(workouts);
+    }
 
-        return workouts.Count.ToString();
+    [HttpPost()]
+    [Produces("application/json")]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(string))]
+    [SwaggerResponse((int)HttpStatusCode.BadRequest, "The data is invalid")]
+    public async Task<IActionResult> CreateWorkout(Workout workout)
+    {
+        workout.Id = 0;
+        this.context.Workouts.Add(workout);
+        await this.context.SaveChangesAsync();
+        return this.Created(nameof(Workout), workout);
     }
 }
