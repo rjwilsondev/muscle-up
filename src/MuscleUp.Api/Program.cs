@@ -1,7 +1,7 @@
-using System.Data.SqlClient;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using MuscleUp.Api.Services;
 using MuscleUp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +47,7 @@ builder.Services.AddSwaggerGen(options =>
 
 });
 
+builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 
 var app = builder.Build();
 

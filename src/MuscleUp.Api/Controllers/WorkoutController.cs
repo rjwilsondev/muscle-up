@@ -1,38 +1,67 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using MuscleUp.Api.Services;
 using MuscleUp.Data;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace MuscleUp.Api.Controllers;
 
-[Route("workouts")]
 public class WorkoutController : Controller
 {
-    private readonly WorkoutContext context;
+    private readonly IWorkoutService workoutService;
 
-    public WorkoutController(WorkoutContext context) => this.context = context;
+    public WorkoutController(IWorkoutService workoutService)
+    {
+        this.workoutService= workoutService;
+    }
 
+
+
+    [HttpGet(@"/workouts/{id:int}")]
+    [Produces("application/json")]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(Workout))]
+    public async Task<IActionResult> GetWorkoutById(int id)
+    {
+        var workout = await this.workoutService.GetWorkoutById(id);
+        if (workout is null)
+        {
+            return this.NotFound();
+        }
+
+        return this.Ok(workout);
+    }
 
     ///<summary>This is a summary</summary>
-    [HttpGet()]
+    [HttpGet(@"/workouts")]
     [Produces("application/json")]
-    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(string))]
-    [SwaggerResponse((int)HttpStatusCode.BadRequest, "The data is invalid")]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(Workout))]
     public async Task<IActionResult> GetWorkouts()
     {
-        var workouts = this.context.Workouts.ToList();
+        var workouts = await this.workoutService.GetWorkouts();
         return this.Ok(workouts);
     }
 
-    [HttpPost()]
+    [HttpPost(@"/workouts")]
     [Produces("application/json")]
-    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(string))]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(Workout))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, "The data is invalid")]
     public async Task<IActionResult> CreateWorkout(Workout workout)
     {
-        workout.Id = 0;
-        this.context.Workouts.Add(workout);
-        await this.context.SaveChangesAsync();
-        return this.Created(nameof(Workout), workout);
+        var newWorkout = await this.workoutService.CreateWorkout(workout);
+        return this.Created(nameof(Workout), newWorkout);
     }
+
+
+    [HttpPut(@"/workouts/{id:int}")]
+    [Produces("application/json")]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(Workout))]
+    [SwaggerResponse((int)HttpStatusCode.BadRequest, "The data is invalid")]
+    public async Task<IActionResult> UpdateeWorkout(int id, [FromBody] Workout workout)
+    {
+        Console.Out.WriteLine(id);
+        var newWorkout = await this.workoutService.UpdateWorkout(workout);
+        return this.Ok(newWorkout);
+    }
+
+
 }
