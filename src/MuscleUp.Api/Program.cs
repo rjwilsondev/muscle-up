@@ -6,22 +6,34 @@ using MuscleUp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyMuscleUpCORSPolicy",
+        policy => policy.AllowAnyOrigin());
+});
+
 //var conStrBuilder = new SqlConnectionStringBuilder(
 //       )
 //{
 //    Password = builder.Configuration["DbPassword"]
 //};
 
+
+
+/**
+ * EF Core with SQL Server.
+ */
 var connection = builder.Configuration.GetConnectionString("WorkoutDatabase");
 
 builder.Services.AddDbContext<WorkoutContext>(
     options => options.UseSqlServer(connection)
 );
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddControllers();
 
+
+/**
+ * Swagger, OpenAPI config.
+ */
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -47,6 +59,17 @@ builder.Services.AddSwaggerGen(options =>
 
 });
 
+
+
+
+// Add services to the container.
+builder.Services.AddControllers();
+
+
+
+/**
+ * Register Services for DI. 
+ */
 builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 
 var app = builder.Build();
@@ -61,9 +84,8 @@ if (app.Environment.IsDevelopment())
         //options.RoutePrefix = "/swagger";
     });
 }
+app.UseCors("MyMuscleUpCORSPolicy");
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
