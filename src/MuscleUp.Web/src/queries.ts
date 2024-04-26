@@ -1,7 +1,7 @@
 import { queryOptions } from "@tanstack/react-query";
 import axios from "axios";
 
-const restClient = axios.create({
+export const restClient = axios.create({
   baseURL: "https://localhost:5151",
 });
 
@@ -14,7 +14,8 @@ export const getWorkoutsQueryOptions = () =>
     },
   });
 
-type Workout = {
+export type Workout = {
+  id: number;
   startDate: string;
   endDate: string | null;
   exercises: Array<unknown>;

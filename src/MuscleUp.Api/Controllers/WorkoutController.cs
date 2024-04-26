@@ -46,7 +46,7 @@ public class WorkoutController : Controller
     [Produces("application/json")]
     [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(Workout))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, "The data is invalid")]
-    public async Task<IActionResult> CreateWorkout(Workout workout)
+    public async Task<IActionResult> CreateWorkout([FromBody] Workout workout)
     {
         var newWorkout = await this.workoutService.CreateWorkout(workout);
         return this.Created(nameof(Workout), newWorkout);

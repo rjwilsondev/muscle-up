@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "MyMuscleUpCORSPolicy",
-        policy => policy.AllowAnyOrigin());
+        policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
 
 //var conStrBuilder = new SqlConnectionStringBuilder(
