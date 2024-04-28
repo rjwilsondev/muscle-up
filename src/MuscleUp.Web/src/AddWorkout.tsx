@@ -1,7 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
-import { restClient } from "./queries";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { getWorkoutsQueryOptions, restClient } from "./queries";
 
 export function AddWorkout() {
+  const queryClient = useQueryClient();
+
   const startWorkoutMutation = useMutation({
     mutationKey: ["Start Workout"],
     mutationFn: () =>
@@ -10,6 +12,7 @@ export function AddWorkout() {
         startDate: (new Date()).toISOString(),
         endDate: null,
       }),
+      onSuccess: async () => await queryClient.invalidateQueries(getWorkoutsQueryOptions()) 
   });
 
   return (

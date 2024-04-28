@@ -57,11 +57,22 @@ public class WorkoutController : Controller
     [Produces("application/json")]
     [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(Workout))]
     [SwaggerResponse((int)HttpStatusCode.BadRequest, "The data is invalid")]
-    public async Task<IActionResult> UpdateeWorkout(int id, [FromBody] Workout workout)
+    public async Task<IActionResult> UpdateWorkout(int id, [FromBody] Workout workout)
     {
-        Console.Out.WriteLine(id);
+        workout.Id = id;
         var newWorkout = await this.workoutService.UpdateWorkout(workout);
         return this.Ok(newWorkout);
+    }
+
+
+    [HttpDelete(@"/workouts/{id:int}")]
+    [Produces("application/json")]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Test", typeof(Workout))]
+    [SwaggerResponse((int)HttpStatusCode.BadRequest, "The data is invalid")]
+    public async Task<IActionResult> DeleteWorkout(int id)
+    {
+        await this.workoutService.DeleteWorkout(id);
+        return this.NoContent();
     }
 
 
